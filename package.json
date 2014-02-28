@@ -1,0 +1,34 @@
+{
+  "name": "gulp-native2ascii",
+  "description": "native2ascii plugin for gulp",
+  "version": "0.0.1",
+  "homepage": "https://github.com/adamme/gulp-native2ascii",
+  "author": {
+    "name": "Adam Lau",
+    "email": "skyros@gmail.com",
+    "url": "http://tinycode.me"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:adamme/gulp-native2ascii.git"
+  },
+  "bugs": {
+    "url": "https://github.com/adamme/gulp-native2ascii/issues"
+  },
+  "licenses": [
+    {
+      "type": "MIT",
+      "url": ""
+    }
+  ],
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "keywords": [
+    "gulpplugin", "gulp", "native2ascii"
+  ],
+  "dependencies": {
+    "gulp-util": "^2.2.14",
+    "through2": "^0.4.1"
+  }
+}
