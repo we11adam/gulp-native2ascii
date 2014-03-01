@@ -25,10 +25,19 @@
     "node": ">= 0.8.0"
   },
   "keywords": [
-    "gulpplugin", "gulp", "native2ascii"
+    "gulpplugin",
+    "gulp",
+    "native2ascii"
   ],
+    "scripts": {
+        "test": "node test/test.js"
+    },
   "dependencies": {
     "gulp-util": "^2.2.14",
     "through2": "^0.4.1"
+  },
+  "devDependencies": {
+    "gulp-mocha": "^0.4.1",
+    "gulp-rename": "^1.1.0"
   }
 }
