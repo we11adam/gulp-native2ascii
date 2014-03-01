@@ -22,7 +22,11 @@ function native2ascii(str) {
     return ascii;
 }
 
-module.exports = function () {
+function ascii2native(str) {
+  return unescape(str.split('\\').join('%'));
+}
+
+module.exports = function (options) {
 
     return through.obj(function (file, enc, callback) {
         if (file.isNull()) {
@@ -30,8 +34,10 @@ module.exports = function () {
             return callback();
         }
 
+        var processor = (options && options.reverse) ? ascii2native : native2ascii;
+
         try {
-            file.contents = new Buffer(native2ascii(file.contents.toString()));
+            file.contents = new Buffer(processor(file.contents.toString()));
         } catch (err) {
             this.emit('error', new util.PluginError('gulp-native2ascii', err));
         }
