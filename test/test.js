@@ -1,6 +1,6 @@
 var n2a = require('../');
-var rename = require('../node_modules/gulp-rename');
-var gulp = require('../node_modules/gulp');
+var rename = require('gulp-rename');
+var gulp = require('gulp');
 
 
 gulp.src('./**/default.js')
@@ -8,7 +8,6 @@ gulp.src('./**/default.js')
                   reverse: false
               }))
     .pipe(rename(function (path) {
-              console.dir(path);
               path.basename += "-converted";
           }))
     .pipe(gulp.dest('./'));
@@ -18,7 +17,6 @@ gulp.src('./**/reverse.js')
                   reverse: true
               }))
     .pipe(rename(function (path) {
-              console.dir(path);
               path.basename += "-converted";
           }))
     .pipe(gulp.dest('./'));
