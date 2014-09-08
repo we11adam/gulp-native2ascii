@@ -3,10 +3,8 @@ var rename = require('gulp-rename');
 var gulp = require('gulp');
 
 
-gulp.src('./**/default.js')
-    .pipe(n2a({
-                  reverse: false
-              }))
+gulp.src('./**/default.js', {buffer: false})
+    .pipe(n2a())
     .pipe(rename(function (path) {
               path.basename += "-converted";
           }))

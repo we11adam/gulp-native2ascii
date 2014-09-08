@@ -1,7 +1,7 @@
 {
   "name": "gulp-native2ascii",
   "description": "native2ascii plugin for gulp",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "homepage": "https://github.com/adamme/gulp-native2ascii",
   "author": {
     "name": "Adam Lau",

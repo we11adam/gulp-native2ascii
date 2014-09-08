@@ -5,6 +5,8 @@ var through = require('through2'),
 
 var PLUGIN_NAME = 'gulp-native2ascii';
 
+var stringHandler, contentsHandler;
+
 
 // taken from https://github.com/yyfrankyy/native2ascii.js/blob/master/native2ascii.js
 function native2ascii(str) {
@@ -29,6 +31,19 @@ function ascii2native(str) {
 }
 
 
+function handleStream(contents) {
+    return contents.pipe(through(function (chunk, enc, callback) {
+        this.push(stringHandler(chunk.toString()));
+        callback();
+    }));
+}
+
+
+function handleBuffer(contents) {
+    return new Buffer(stringHandler(contents.toString()));
+}
+
+
 module.exports = function (options) {
 
     return through.obj(function (file, enc, callback) {
@@ -37,10 +52,12 @@ module.exports = function (options) {
             return callback();
         }
 
-        var processor = (options && options.reverse) ? ascii2native : native2ascii;
+        stringHandler = (options && options.reverse) ? ascii2native : native2ascii;
+
+        contentsHandler = file.isBuffer() ? handleBuffer : handleStream;
 
         try {
-            file.contents = new Buffer(processor(file.contents.toString()));
+            file.contents = contentsHandler(file.contents);
         } catch (err) {
             this.emit('error', new pluginError(PLUGIN_NAME, err));
         }
