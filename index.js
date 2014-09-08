@@ -1,8 +1,9 @@
 'use strict';
 
 var through = require('through2'),
-    util = require('gulp-util'),
-    PluginError = util.PluginError;
+    pluginError = require('gulp-util').PluginError;
+
+var PLUGIN_NAME = 'gulp-native2ascii';
 
 
 // taken from https://github.com/yyfrankyy/native2ascii.js/blob/master/native2ascii.js
@@ -22,9 +23,11 @@ function native2ascii(str) {
     return ascii;
 }
 
+
 function ascii2native(str) {
-  return unescape(str.split('\\').join('%'));
+    return unescape(str.split('\\').join('%'));
 }
+
 
 module.exports = function (options) {
 
@@ -39,7 +42,7 @@ module.exports = function (options) {
         try {
             file.contents = new Buffer(processor(file.contents.toString()));
         } catch (err) {
-            this.emit('error', new util.PluginError('gulp-native2ascii', err));
+            this.emit('error', new pluginError(PLUGIN_NAME, err));
         }
 
         this.push(file);
