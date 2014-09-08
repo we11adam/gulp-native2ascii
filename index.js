@@ -60,6 +60,7 @@ module.exports = function (options) {
             file.contents = contentsHandler(file.contents);
         } catch (err) {
             this.emit('error', new pluginError(PLUGIN_NAME, err));
+            return callback();
         }
 
         this.push(file);
