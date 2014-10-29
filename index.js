@@ -27,7 +27,13 @@ function native2ascii(str) {
 
 
 function ascii2native(str) {
-    return unescape(str.split('\\').join('%'));
+    if(str.indexOf('\\\\u')>-1){
+        return str.replace(/\\(\\u\w+)/g, function(all, key){
+            return unescape(key);
+        });
+    }else{
+        return unescape(str.split('\\').join('%'));
+    }
 }
 
 
