@@ -1,6 +1,6 @@
 # [gulp-native2ascii]()
 ## About
-Converts a file with characters in any supported character encoding to one with ASCII and/or Unicode escapes, or visa versa.
+Converts a file with characters in any supported character encoding to one with ASCII and/or Unicode escapes, or vise versa.
 
 
 ## Usage
